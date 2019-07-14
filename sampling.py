@@ -94,17 +94,17 @@ def match_img_with_label(img_dict, df):
     print(len(img0))
     folder = "E:\Kaggle\\"
 
-    for i in range(size_class):
-        image_gray_0 = cv2.cvtColor(img0[i], cv2.COLOR_BGR2GRAY)
-        image_gray_1 = cv2.cvtColor(img1[i], cv2.COLOR_BGR2GRAY)
-        image_gray_2 = cv2.cvtColor(img2[i], cv2.COLOR_BGR2GRAY)
-        image_gray_3 = cv2.cvtColor(img3[i], cv2.COLOR_BGR2GRAY)
-        image_gray_4 = cv2.cvtColor(img4[i], cv2.COLOR_BGR2GRAY)
-        path0 = folder + "0\\" + key0[i]
-        path1 = folder + "1\\" + key1[i]
-        path2 = folder + "2\\" + key2[i]
-        path3 = folder + "3\\" + key3[i]
-        path4 = folder + "4\\" + key4[i]
+    for i in range(30):
+        image_gray_0 = cv2.cvtColor(img0[0-i], cv2.COLOR_BGR2GRAY)
+        image_gray_1 = cv2.cvtColor(img1[0-i], cv2.COLOR_BGR2GRAY)
+        image_gray_2 = cv2.cvtColor(img2[0-i], cv2.COLOR_BGR2GRAY)
+        image_gray_3 = cv2.cvtColor(img3[0-i], cv2.COLOR_BGR2GRAY)
+        image_gray_4 = cv2.cvtColor(img4[0-i], cv2.COLOR_BGR2GRAY)
+        path0 = folder + "0\\" + key0[0-i]
+        path1 = folder + "1\\" + key1[0-i]
+        path2 = folder + "2\\" + key2[0-i]
+        path3 = folder + "3\\" + key3[0-i]
+        path4 = folder + "4\\" + key4[0-i]
         cv2.imwrite(path0, image_gray_0)
         cv2.imwrite(path1, image_gray_1)
         cv2.imwrite(path2, image_gray_2)

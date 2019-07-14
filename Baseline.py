@@ -1,38 +1,45 @@
 import keras
-from keras.preprocessing.image import ImageDataGenerator
 import pandas as pd
 import sklearn
 import cv2
 import os
 import keras
 from keras.models import Sequential, Input, Model
-from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 from keras.layers.advanced_activations import LeakyReLU
 import PIL
-
-
-
-
-
+from __future__ import print_function
+import keras
+from keras.layers import Dense, Conv2D, BatchNormalization, Activation
+from keras.layers import AveragePooling2D, Input, Flatten
+from keras.optimizers import Adam
+from keras.callbacks import ModelCheckpoint, LearningRateScheduler
+from keras.callbacks import ReduceLROnPlateau
+from keras.preprocessing.image import ImageDataGenerator
+from keras.regularizers import l2
+from keras import backend as K
+from keras.models import Model
+from keras.datasets import cifar10
+import numpy as np
 
 
 def construct_model(num_classes):
     fashion_model = Sequential()
-    fashion_model.add(Conv2D(64, kernel_size=(3, 3), activation='linear', input_shape=(300, 300, 1), padding='same'))
-    fashion_model.add(LeakyReLU(alpha=0.1))
-    fashion_model.add(MaxPooling2D((2, 2), padding='same'))
-    fashion_model.add(Conv2D(128, (3, 3), activation='linear', padding='same'))
-    fashion_model.add(LeakyReLU(alpha=0.1))
-    fashion_model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
-    fashion_model.add(Conv2D(256, (3, 3), activation='linear', padding='same'))
-    fashion_model.add(LeakyReLU(alpha=0.1))
-    fashion_model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
-    fashion_model.add(Flatten())
-    fashion_model.add(Dense(256, activation='linear'))
-    fashion_model.add(LeakyReLU(alpha=0.1))
-    fashion_model.add(Dense(num_classes, activation='softmax'))
+    # fashion_model.add(Conv2D(64, kernel_size=(3, 3), activation='linear', input_shape=(300, 300, 1), padding='same'))
+    # fashion_model.add(LeakyReLU(alpha=0.1))
+    # fashion_model.add(MaxPooling2D((2, 2), padding='same'))
+    # fashion_model.add(Conv2D(128, (3, 3), activation='linear', padding='same'))
+    # fashion_model.add(LeakyReLU(alpha=0.1))
+    # fashion_model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
+    # fashion_model.add(Conv2D(256, (3, 3), activation='linear', padding='same'))
+    # fashion_model.add(LeakyReLU(alpha=0.1))
+    # fashion_model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
+    # fashion_model.add(Flatten())
+    # fashion_model.add(Dense(256, activation='linear'))
+    # fashion_model.add(LeakyReLU(alpha=0.1))
+    # fashion_model.add(Dense(num_classes, activation='softmax'))
+
 
     fashion_model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(),
                           metrics=['accuracy'])
@@ -77,7 +84,7 @@ def main():
     # Construct model
     model = construct_model(num_classes)
     model.fit_generator(
-        train_generator, steps_per_epoch=100, epochs=20,
+        train_generator, steps_per_epoch=500, epochs=20,
     )
 
     return
